@@ -10,15 +10,20 @@ import ShoppingCart from './components/ShoppingCart';
 // Context
 import { ProductContext } from './contexts/ProductContext';
 import { CartContext } from './contexts/CartContext';
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
 	const [products] = useState(data);
 	const [cart, setCart] = useState([]);
+	const [saveItem, setSaveItem] = useLocalStorage("cart");
 
 	const addItem = item => {
 		// add the given item to the cart
 		setCart([...cart, item]);
+		// setSaveItem(cart);
 	};
+
+	console.log("Saved item", cart);
 
 	return (
 		<div className="App">
